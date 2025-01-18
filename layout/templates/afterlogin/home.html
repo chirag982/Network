@@ -1,1 +1,12 @@
-{% extends 'afterlogin/layout.html' %} {% block style %} {% endblock %} {% block content %} {% endblock %}
+{% extends 'afterlogin/layout.html' %} {% block style %}
+<style>
+    #home-heading {
+        color: cadetblue;
+        text-align: center;
+    }
+</style>
+{% endblock %} {% block content %}
+<div id="home-heading">
+    <h1>All Posts</h1>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'afterlogin/layout.html' %} {% block style %}
+<style>
+    #find-heading {
+        color: cadetblue;
+        text-align: center;
+    }
+    
+    #find-people {
+        text-align: center;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    #find-people input {
+        width: 50%;
+    }
+    
+    #find-people button {
+        border: 1px solid black;
+    }
+</style>
+{% endblock %} {% block content %}
+<div id="find-heading">
+    <h1>Find People</h1>
+</div>
+<hr>
+<div id="find-people">
+    <input type="text" placeholder="Enter the username!" name="username">
+    <button>🔍</button>
+</div>
+<hr> {% endblock %}

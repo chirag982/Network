@@ -21,3 +21,12 @@ def home(request):
 
 def profile(request):
     return render(request, "afterlogin/profile.html")
+
+def addpost(request):
+    return render(request, "afterlogin/addpost.html")
+
+def find(request):
+    return render(request, "afterlogin/find.html")
+
+def about(request):
+    return render(request, "afterlogin/about.html")

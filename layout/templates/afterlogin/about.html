@@ -1,0 +1,58 @@
+{% extends 'afterlogin/layout.html' %} {% block style %}
+<style>
+    #about-heading {
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    #about-heading h1 {
+        text-align: center;
+        color: cadetblue;
+    }
+    
+    #about-heading #copyrights {
+        color: gray;
+        text-align: center;
+    }
+</style>
+{% endblock %} {% block content %}
+<div id="about-heading">
+    <h1>About Us</h1>
+
+    <strong>About Chirag's Social Media Project</strong>
+    <ul>
+        <li>This website is a personal project by Chirag, built to showcase his skills in web development. It aims to replicate core functionalities of popular social media platforms, serving as a learning and portfolio piece.</li>
+    </ul>
+
+
+    <strong>Key Features:</strong>
+    <ul>
+        <li>User Authentication</li>
+        <li>User Profiles</li>
+        <li>Content Creation & Sharing</li>
+        <li>User Interactions</li>
+        <li>User Feeds</li>
+        <li>Direct Messaging</li>
+        <li>Search Functionality</li>
+        <li>Session Management</li>
+    </ul>
+
+    <strong>Technologies Used:</strong>
+    <ul>
+        <li>[List specific programming languages used - Python, JavaScript]</li>
+        <li>[List specific frameworks/libraries used - Django]</li>
+        <li>[List specific databases used - Sqlite3]</li>
+        <li>[List other relevant technologies - HTML, CSS]</li>
+    </ul>
+
+    <strong>Project Goals:</strong>
+    <ul>
+        <li>Demonstrate proficiency in web development fundamentals.</li>
+        <li>Explore and implement advanced concepts like user authentication, data modeling, and API integration.</li>
+        <li>Build a functional and user-friendly social media platform.</li>
+        <li>Gain practical experience in software development lifecycle.</li>
+    </ul>
+
+    <p id="copyrights">@Copyrights</p>
+</div>
+{% endblock %}

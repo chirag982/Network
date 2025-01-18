@@ -1,0 +1,42 @@
+{% extends 'afterlogin/layout.html' %} {% block style %}
+<style>
+    #post-form {
+        margin: 5%;
+        border-radius: 10px;
+        background-color: lightgray;
+    }
+    
+    #post-form h1 {
+        text-align: center;
+        border-radius: 10px;
+        color: white;
+        background-color: black;
+    }
+    
+    #post-form textarea {
+        width: 100%;
+    }
+    
+    #post-form-data {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    #post-form-button {
+        text-align: center;
+        padding-bottom: 1%;
+    }
+</style>
+{% endblock %} {% block content %}
+<div id="post-form">
+    <h1>New Post</h1>
+    <div id="post-form-data">
+        <input type="file" name="image" placeholder="Add image">
+        <textarea placeholder="what's on your mind!" name="post"></textarea>
+        <br>
+    </div>
+    <div id="post-form-button">
+        <button class="btn btn-dark">Submit</button>
+    </div>
+</div>
+{% endblock %}
