@@ -73,7 +73,7 @@
 <body>
     <div class="heading">
         <div id="logo">
-            <a href="{% url 'index' %}"><img src="{% static '/logo/Network.png' %}"></a>
+            <a href="{% url 'home' %}"><img src="{% static '/logo/Network.png' %}"></a>
         </div>
         <div id="logout">
             <a href="#"><button>Logout</button></a>
@@ -81,18 +81,18 @@
     </div>
     <div id="main">
         <div id="first">
-            <a href="#">👨🏻‍💼 Profile</a>
-            <a href="#">🏠︎ Home</a>
+            <a href="{% url 'profile' %}">👨🏻‍💼 Profile</a>
+            <a href="{% url 'home' %}">🏠︎ Home</a>
             <a href="#">💬 New Post</a>
             <a href="#">👫 Friends</a>
             <a href="#">🔍 Find</a>
             <a href="#">👩🏻‍💻 About Us</a>
         </div>
         <div id="second">
-            hello
+            {% block content %} {% endblock %}
         </div>
     </div>
-    {% block content %} {% endblock %}
+
 </body>
 
 </html>

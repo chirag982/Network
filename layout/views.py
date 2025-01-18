@@ -18,3 +18,6 @@ def signup(request):
     
 def home(request):
     return render(request, "afterlogin/home.html")
+
+def profile(request):
+    return render(request, "afterlogin/profile.html")
