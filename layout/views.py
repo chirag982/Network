@@ -28,5 +28,8 @@ def addpost(request):
 def find(request):
     return render(request, "afterlogin/find.html")
 
+def following(request):
+    return render(request, "afterlogin/following.html")
+
 def about(request):
     return render(request, "afterlogin/about.html")
