@@ -1,11 +1,20 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 
 # Create your views here.
 def index(request):
-    return render(request, "beforelogin/index.html")
+    return redirect(login)
 
 def login(request):
-    return render(request, "beforelogin/login.html")
+    if request.method=="POST":
+        pass
+    else:
+        return render(request, "beforelogin/login.html")
 
 def signup(request):
-    return render(request, "beforelogin/signup.html")
+    if request.method=="POST":
+        pass
+    else:
+        return render(request, "beforelogin/signup.html")
+    
+def home(request):
+    return render(request, "afterlogin/home.html")
