@@ -18,14 +18,44 @@
     #find-people button {
         border: 1px solid black;
     }
+    #person-block {
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+    }
+    #person-block p {
+        color: red;
+    }
 </style>
 {% endblock %} {% block content %}
+{% load static %}
 <div id="find-heading">
     <h1>Find People</h1>
 </div>
 <hr>
 <div id="find-people">
-    <input type="text" placeholder="Enter the username!" name="username">
-    <button>🔍</button>
+    <form method="post" action="{% url 'find' %}">
+        {% csrf_token %}
+        <input type="text" placeholder="Enter the username!" name="username">
+        <button>🔍</button>
+    </form>
 </div>
-<hr> {% endblock %}
+
+<hr> 
+
+<div id="person-block">
+    {% if person %}
+    <h3>Results:</h3>
+    <br>
+
+    <form method="post" action="{% url 'findprofile' %}">
+        {% csrf_token %}
+        <button class="btn btn-success">{{person.username}}</button>
+    </form>
+    
+    {% endif %}
+    {% if message %}
+        <p>{{message}}</p>
+    {% endif %}
+</div>
+{% endblock %}

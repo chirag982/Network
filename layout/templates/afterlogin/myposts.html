@@ -1,6 +1,6 @@
 {% extends 'afterlogin/layout.html' %} {% block style %}
 <style>
-    #home-heading {
+    #mypost-heading {
         color: cadetblue;
         text-align: center;
     }
@@ -21,8 +21,8 @@
     }
 </style>
 {% endblock %} {% block content %}
-<div id="home-heading">
-    <h1>All Posts</h1>
+<div id="mypost-heading">
+    <h1>My Posts</h1>
 </div>
 <hr>
 {% for post in posts %}

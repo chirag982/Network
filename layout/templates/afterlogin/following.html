@@ -5,6 +5,17 @@
         color: cadetblue;
         text-align: center;
     }
+    #post-containers {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    #post-containers p {
+        color: cadetblue;
+    }
+    #like-button {
+        background-color: transparent;
+        border: 0px;
+    }
 </style>
 
 {% endblock %} {% block content %} {% load static %}
@@ -12,7 +23,15 @@
 <div id="following-heading">
     <h1>Following</h1>
 </div>
-
-
+<hr>
+<div id="post-containers">
+    <i>username</i>
+    <br>
+    <strong>content</strong>
+    <p>timestamp</p>
+    <button id="like-button">🤍</button>
+    ❤️
+    <hr>
+</div>
 
 {% endblock %}

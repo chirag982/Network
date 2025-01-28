@@ -30,13 +30,21 @@
 {% endblock %} {% block content %}
 <div id="post-form">
     <h1>New Post</h1>
-    <div id="post-form-data">
-        <input type="file" name="image" placeholder="Add image">
-        <textarea placeholder="what's on your mind!" name="post"></textarea>
-        <br>
-    </div>
-    <div id="post-form-button">
-        <button class="btn btn-dark">Submit</button>
-    </div>
+    <form method="post" action="{% url 'addpost' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="post-form-data">
+            <input type="file" name="image" placeholder="Add image">
+            <textarea placeholder="what's on your mind!" name="post"></textarea>
+            <br>
+        </div>
+        <div id="post-form-button">
+            <button class="btn btn-dark">Submit</button>
+        </div>
+    </form>
 </div>
+{% if message %}
+<script>
+    alert("{{message}}")
+</script>
+{% endif %}
 {% endblock %}

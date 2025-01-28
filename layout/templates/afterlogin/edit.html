@@ -1,0 +1,39 @@
+{% extends 'afterlogin/layout.html' %} {% block style %}
+<style>
+    #editprofile-heading {
+        color: cadetblue;
+        text-align: center;
+    }
+    #profile-containers {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+</style>
+{% endblock %} {% block content %}
+<div id="editprofile-heading">
+    <h1>Edit</h1>
+</div>
+<hr>
+<div id="profile-containers">   
+    <form method="post" action="{% url 'update' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="edit">
+            <label>Add Image:</label><input type="file" name="image">
+            <hr>
+            <label>Bio:</label><input type="text" name="bio" value="{{person.bio}}">
+            <hr>
+            <lable>UserName:</lable><input type="text" name="username" value="{{person.username}}" disabled>
+            <hr>
+            <label>Full Name:</label><input type="text" name="name" value="{{person.name}}">
+            <hr>
+            <label>Email:</label><input type="text" name="email" value="{{person.email}}" disabled>
+            <hr>
+            <label>Date Of Birth:</label><input type="text" name="dob" value="{{person.DOB}}">
+            <hr>
+            <button class="btn btn-dark">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -37,7 +37,7 @@
     </div>
     <hr>
     <div id="body-containerX-body">
-        <form action="#" method="post">
+        <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
             <input type="username" name="username" placeholder="UserName">
             <br>

@@ -22,7 +22,8 @@
         border: 1px solid black;
     }
     
-    #profile-container-one button {
+    #profile-container-one a {
+        text-decoration: none;
         color: black;
         background-color: gainsboro;
         padding-right: 10%;
@@ -33,6 +34,11 @@
         border-radius: 3%;
     }
     
+    #profile-container-one a:hover {
+        background-color: black;
+        color: lightgray;
+        text-decoration: none;
+    }
     
     #profile-container-two h1 {
         color: white;
@@ -43,38 +49,50 @@
         padding-top: 5%;
         padding-right: 5%;
         padding-left: 5%;
-        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
     }
     
+    #profile-container-two-inside #labels {
+        font-family: sans-serif;
+    }
     
+    #profile-container-two-inside #values {
+        font-family: sans-serif;
+    }
     
     #profile-container-one img {
         border-radius: 10%;
         width: 200px;
         height: 200px;
-        display: inline-block;
     }
 </style>
 {% endblock style %} {% block content %} {% load static %}
 
 <div id="profile-container">
     <div id="profile-container-one">
-        <img src="{{person.image.url}}">
-        <h4>{{person.username}}</h4>
-        <p>{{person.bio}}</p>
-        <form method="post" action="{% url 'profile' %}">
-            {% csrf_token %}
-            <button>Edit</button>    
-        </form>
-        
+        <img src="{% static 'images/images.png' %}">
+        <h4>Username</h4>
+        <p>Bio</p>
+        <a href="#">Follow</a>
     </div>
     <div id="profile-container-two">
         <h1>Details</h1>
         <div id="profile-container-two-inside">
-            <p>Username - <i>{{person.username}}</i></p>
-            <p>Name - <i>{{person.name}}</i></p>
-            <p>Email - <i>{{person.email}}</i></p>
-            <p>Date Of Birth - <i>{{person.DOB}}</i></p>
+            <div id="labels">
+                <p>Name:</p>
+                <p>Username:</p>
+                <p>Email:</p>
+                <p>Date Of Birth:</p>
+                <p>Year joined:</p>
+            </div>
+            <div id="values">
+                <p>values</p>
+                <p>values</p>
+                <p>values</p>
+                <p>values</p>
+                <p>values</p>
+            </div>
         </div>
     </div>
 </div>
