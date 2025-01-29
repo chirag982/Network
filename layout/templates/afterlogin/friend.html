@@ -1,6 +1,6 @@
 {% extends 'afterlogin/layout.html' %} {% block style %}
 <style>
-    #mypost-heading {
+    #home-heading {
         color: cadetblue;
         text-align: center;
     }
@@ -19,12 +19,30 @@
         width: 400px;
         height: 300px;
     }
+
+    #friend-container {
+        text-align: center;
+    }
+
+
 </style>
-{% endblock %} {% block content %}
-<div id="mypost-heading">
-    <h1>My Posts</h1>
-</div>
+{% endblock style %} {% block content %} {% load static %}
+
+    <div id="friend-container">
+        <h4>{{person.name}} : ({{person.username}})</h4>
+        <form method="post" action="{% url 'findprofile' %}">
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{person.username}}">
+            <button class="btn btn-light">Go to profile</button>    
+        </form>        
+    </div>
+
+
 <hr>
+
+<div id="home-heading">
+    <h1>Posts by {{person.username}}</h1>
+</div>
 {% for post in posts %}
 
 <div id="post-containers">   
@@ -33,10 +51,9 @@
     <strong>{{post.content}}</strong>
     <br>
     <i>{{post.username.name}} ({{post.username.username}})</i>
-    <p>{{post.time}}</p>
+    <p>timestamp</p>
     <!-- <button id="like-button">🤍</button>❤️ -->
     <hr>
 </div>
 {% endfor %}
-
 {% endblock %}

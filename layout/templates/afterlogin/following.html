@@ -28,12 +28,13 @@
     <br>
     {% for p in people %}
         <div> 
-            <form method="post" action="#">
+            <form method="post" action="{% url 'friend' %}">
+                {% csrf_token %}
                 <strong>{{p.username}}</strong>
                 <br>
                 <i>{{p.name}}</i>
                 <br>
-                <input type="hidden" value="{{p.username}}" name="user-to-find">
+                <input type="hidden" value="{{p.username}}" name="friend">
                 <button class="btn btn-light">open</button>
             </form>
         </div>

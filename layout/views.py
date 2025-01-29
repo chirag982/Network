@@ -36,9 +36,11 @@ def signup(request):
                 "message": "User already exists with this username"
             })
         else:
-            user = User.objects.create_user(username, email, password)
+            User.objects.create_user(username, email, password)
             person = Person.objects.create(username=username, name=name, email=email)
             person.save()
+            p = Person.objects.get(username=username)
+            Follow_People.objects.create(uname=p)
             u = authenticate(request, username=username, password=password)
             login(request, u)
             return redirect(reverse(home), {
@@ -54,7 +56,7 @@ def logout_view(request):
 
 @login_required
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-time')
     return render(request, "afterlogin/home.html", {
         "posts":posts
     })
@@ -103,7 +105,7 @@ def addpost(request):
 @login_required
 def mypost(request):
     user = request.user.username
-    posts = Post.objects.filter(username=user)
+    posts = Post.objects.filter(username=user).order_by('-time')
     return render(request, "afterlogin/myposts.html", {
         "posts":posts
     })
@@ -143,7 +145,7 @@ def findProfile(request):
             "tag":tag
         })
     else:
-        return redirect(reverse(find))
+        return redirect(reverse(following))
     
 
 @login_required
@@ -170,6 +172,18 @@ def following(request):
     return render(request, "afterlogin/following.html", {
         "people":people
     })
+
+@login_required
+def friend(request):
+    if request.method=="POST":
+        friend = request.POST["friend"]
+        person = Person.objects.get(username=friend)
+        posts = Post.objects.filter(username=person).order_by('-time')
+        return render(request, "afterlogin/friend.html", {
+            "person":person,
+            "posts":posts
+        })
+    return redirect(reverse(following))
 
 @login_required
 def unfollow(request):
