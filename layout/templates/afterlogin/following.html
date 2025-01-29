@@ -5,16 +5,15 @@
         color: cadetblue;
         text-align: center;
     }
-    #post-containers {
+    #people-containers {
         margin-left: 5%;
         margin-right: 5%;
     }
-    #post-containers p {
-        color: cadetblue;
-    }
-    #like-button {
-        background-color: transparent;
-        border: 0px;
+    #people-containers div {
+        padding: 1%;
+        text-align: center;
+        background-color: lightblue;
+        
     }
 </style>
 
@@ -24,14 +23,23 @@
     <h1>Following</h1>
 </div>
 <hr>
-<div id="post-containers">
-    <i>username</i>
+<div id="people-containers">
+
     <br>
-    <strong>content</strong>
-    <p>timestamp</p>
-    <button id="like-button">🤍</button>
-    ❤️
-    <hr>
+    {% for p in people %}
+        <div> 
+            <form method="post" action="#">
+                <strong>{{p.username}}</strong>
+                <br>
+                <i>{{p.name}}</i>
+                <br>
+                <input type="hidden" value="{{p.username}}" name="user-to-find">
+                <button class="btn btn-light">open</button>
+            </form>
+        </div>
+        <br>
+    {% endfor %}
+    
 </div>
 
 {% endblock %}

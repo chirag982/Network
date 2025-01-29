@@ -22,8 +22,7 @@
         border: 1px solid black;
     }
     
-    #profile-container-one a {
-        text-decoration: none;
+    #profile-container-one button {
         color: black;
         background-color: gainsboro;
         padding-right: 10%;
@@ -34,11 +33,6 @@
         border-radius: 3%;
     }
     
-    #profile-container-one a:hover {
-        background-color: black;
-        color: lightgray;
-        text-decoration: none;
-    }
     
     #profile-container-two h1 {
         color: white;
@@ -49,50 +43,54 @@
         padding-top: 5%;
         padding-right: 5%;
         padding-left: 5%;
-        display: flex;
-        justify-content: space-evenly;
+        text-align: center;
     }
     
-    #profile-container-two-inside #labels {
-        font-family: sans-serif;
-    }
     
-    #profile-container-two-inside #values {
-        font-family: sans-serif;
-    }
     
     #profile-container-one img {
         border-radius: 10%;
         width: 200px;
         height: 200px;
+        display: inline-block;
     }
 </style>
 {% endblock style %} {% block content %} {% load static %}
 
 <div id="profile-container">
     <div id="profile-container-one">
-        <img src="{% static 'images/images.png' %}">
-        <h4>Username</h4>
-        <p>Bio</p>
-        <a href="#">Follow</a>
+        <img src="{{person.image.url}}">
+        <h4>{{person.username}}</h4>
+        <p>{{person.bio}}</p>
+        
+    
+
+            {% if tag == '1' %}    
+            <form method="post" action="{% url 'unfollow' %}">
+                {% csrf_token %}
+                <input type="hidden" name="unfollow" value="{{person.username}}">
+                <button>Unfollow</button>
+            </form>
+            {% endif %}
+
+            {% if tag == '0' %}
+            <form method="post" action="{% url 'following' %}">
+                {% csrf_token %}
+                <input type="hidden" name="follow" value="{{person.username}}">
+                <button>Follow</button>
+            </form>
+                    
+            {% endif %}
+        
+        
     </div>
     <div id="profile-container-two">
         <h1>Details</h1>
         <div id="profile-container-two-inside">
-            <div id="labels">
-                <p>Name:</p>
-                <p>Username:</p>
-                <p>Email:</p>
-                <p>Date Of Birth:</p>
-                <p>Year joined:</p>
-            </div>
-            <div id="values">
-                <p>values</p>
-                <p>values</p>
-                <p>values</p>
-                <p>values</p>
-                <p>values</p>
-            </div>
+            <p>Username - <i>{{person.username}}</i></p>
+            <p>Name - <i>{{person.name}}</i></p>
+            <p>Email - <i>{{person.email}}</i></p>
+            <p>Date Of Birth - <i>{{person.DOB}}</i></p>
         </div>
     </div>
 </div>

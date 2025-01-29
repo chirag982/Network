@@ -20,4 +20,10 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.username} : {self.content}"
+    
+class Follow_People(models.Model):
+    uname = models.ForeignKey(Person, on_delete=models.CASCADE)
+    to_follow = models.ManyToManyField(Person, related_name="follow")
 
+    def __str__(self):
+        return f"{self.uname} : {self.to_follow}"

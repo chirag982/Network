@@ -16,4 +16,5 @@ urlpatterns = [
 
     path("findprofile", views.findProfile, name="findprofile"),
     path("update/", views.update, name="update"),
+    path("unfollow/", views.unfollow, name="unfollow")
 ]

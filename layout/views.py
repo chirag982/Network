@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import Person, Post
+from .models import Person, Post, Follow_People
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -122,14 +122,67 @@ def find(request):
         })
     return render(request, "afterlogin/find.html")
 
+
 @login_required
 def findProfile(request):
-    return render(request, "afterlogin/findprofile.html")
+    if request.method=="POST":
+        user = request.POST["username"]
+        person = Person.objects.get(username=user)
+        tag = "0"
+        u = request.user.username
+        if Follow_People.objects.filter(uname=u).exists():
+            people = Follow_People.objects.get(uname=u)
+            peo = people.to_follow.all()
+            print(peo)
+            for p in peo:
+                if p.username==user:
+                    print("exists")
+                    tag = "1"
+        return render(request, "afterlogin/findprofile.html", {
+            "person":person,
+            "tag":tag
+        })
+    else:
+        return redirect(reverse(find))
     
 
 @login_required
 def following(request):
-    return render(request, "afterlogin/following.html")
+    if request.method=="POST":
+        to_follow = request.POST["follow"]
+        user = request.user.username
+        person = Person.objects.get(username = user)
+        to_follow_people = Person.objects.get(username = to_follow)
+        if Follow_People.objects.filter(uname=person).exists():
+           p = Follow_People.objects.get(uname=person)
+        else:
+            p = Follow_People.objects.create(uname = person)
+        p.to_follow.add(to_follow_people)
+        p = Follow_People.objects.get(uname = person)
+        people = p.to_follow.all()
+        return render(request, "afterlogin/following.html", {
+            "people":people
+        })
+    user = request.user.username
+    person = Person.objects.get(username = user)
+    p = Follow_People.objects.get(uname = person)
+    people = p.to_follow.all()
+    return render(request, "afterlogin/following.html", {
+        "people":people
+    })
+
+@login_required
+def unfollow(request):
+    if request.method=="POST":
+        user_to_unfollow = request.POST["unfollow"]
+        user = request.user.username
+        person = Person.objects.get(username=user)
+        to_unfollow = Person.objects.get(username=user_to_unfollow)
+        p = Follow_People.objects.get(uname = person)
+        p.to_follow.remove(to_unfollow)
+        return redirect(reverse(findProfile))
+    return redirect(reverse(find))
+
 
 @login_required
 def about(request):
