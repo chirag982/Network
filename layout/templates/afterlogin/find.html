@@ -1,7 +1,8 @@
 {% extends 'afterlogin/layout.html' %} {% block style %}
 <style>
     #find-heading {
-        color: cadetblue;
+        padding: 2px;
+        background-color: palegoldenrod;
         text-align: center;
     }
     
@@ -26,13 +27,26 @@
     #person-block p {
         color: red;
     }
+    #person-block button {
+        text-decoration: none;
+        border: 1px solid black;
+        background-color: lightgray;
+        color: black;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    #person-block button:hover {
+        background-color: black;
+        color: white;
+    }
+    
 </style>
 {% endblock %} {% block content %}
 {% load static %}
 <div id="find-heading">
     <h1>Find People</h1>
 </div>
-<hr>
+<br>
 <div id="find-people">
     <form method="post" action="{% url 'find' %}">
         {% csrf_token %}
@@ -51,7 +65,7 @@
     <form method="post" action="{% url 'findprofile' %}">
         {% csrf_token %}
         <input type="hidden" value="{{person.username}}" name="username">
-        <button class="btn btn-success">{{person.username}}</button>
+        <button>{{person.username}}</button>
     </form>
     
     {% endif %}

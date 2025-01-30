@@ -2,7 +2,8 @@
 
 <style>
     #following-heading {
-        color: cadetblue;
+        padding: 2px;
+        background-color: palegoldenrod;
         text-align: center;
     }
     #people-containers {
@@ -12,7 +13,6 @@
     #people-containers div {
         padding: 1%;
         text-align: center;
-        background-color: lightblue;
         
     }
 </style>
@@ -22,10 +22,9 @@
 <div id="following-heading">
     <h1>Following</h1>
 </div>
-<hr>
 <div id="people-containers">
 
-    <br>
+    <hr>
     {% for p in people %}
         <div> 
             <form method="post" action="{% url 'friend' %}">
@@ -38,7 +37,7 @@
                 <button class="btn btn-light">open</button>
             </form>
         </div>
-        <br>
+        <hr>
     {% endfor %}
     
 </div>

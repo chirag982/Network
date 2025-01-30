@@ -1,7 +1,8 @@
 {% extends 'afterlogin/layout.html' %} {% block style %}
 <style>
     #mypost-heading {
-        color: cadetblue;
+        padding: 2px;
+        background-color: palegoldenrod;
         text-align: center;
     }
     #post-containers {
@@ -24,12 +25,14 @@
 <div id="mypost-heading">
     <h1>My Posts</h1>
 </div>
-<hr>
+<br>
 {% for post in posts %}
 
 <div id="post-containers">   
+    {% if post.image %}
     <img src="{{post.image.url}}" id="image">
     <br>
+    {% endif %}
     <strong>{{post.content}}</strong>
     <br>
     <i>{{post.username.name}} ({{post.username.username}})</i>

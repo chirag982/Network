@@ -22,6 +22,8 @@
 
     #friend-container {
         text-align: center;
+        padding: 2px;
+        background-color: palegoldenrod;
     }
 
 
@@ -37,21 +39,18 @@
         </form>        
     </div>
 
-
-<hr>
-
-<div id="home-heading">
-    <h1>Posts by {{person.username}}</h1>
-</div>
 {% for post in posts %}
-
-<div id="post-containers">   
+<br>
+<div id="post-containers"> 
+    <hr>
+    {% if post.image %}
     <img src="{{post.image.url}}" id="image">
     <br>
+    {% endif %}  
     <strong>{{post.content}}</strong>
     <br>
     <i>{{post.username.name}} ({{post.username.username}})</i>
-    <p>timestamp</p>
+    <p>{{post.time}}</p>
     <!-- <button id="like-button">🤍</button>❤️ -->
     <hr>
 </div>
